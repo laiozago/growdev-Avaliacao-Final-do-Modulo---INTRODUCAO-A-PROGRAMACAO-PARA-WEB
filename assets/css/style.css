@@ -7,6 +7,8 @@ body {
     background-color: aliceblue;
 }
 
+/* Estilização da página index.html */
+
 .box {
     position: fixed;
     height: 100vh;
@@ -89,6 +91,8 @@ body {
     transition: .3s;
     font-weight: bold;
 }
+
+/* Estilização da página cadastro.html */
 
 .cadastro-entradas {
     display: contents;

@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: aliceblue;
+    padding: 1em;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    margin-top: 1em;
+    display: flex;
+}
+
+form input {
+    height: 1.5em;
+    border: 1px solid black;
+}
+
+form #input-descricao {
+    width: 30vw;
+    margin-right: 1em;
+    border-radius: 5px;
+}
+
+form #input-detalhamento {
+    width: 60vw;
+    border-radius: 5px 0 0 5px;
+}
+
+table {
+    margin-top: 1.5rem;
+    border-spacing: 0;
+}
+
+tr {
+    height: 1.5rem;
+}
+
+td:first-child {
+    width: 10vw;
+}
+td:first-child + td {
+    width: 20vw;
+}
+td:first-child + td + td {
+    width: 50vw;
+}
+td:first-child + td + td +td {
+    width: 20vw;
+}
+thead {
+    background-color: #f0f0f0;
+    height: 2.5rem;
+}
+
+tbody:nth-child(odd) {
+    background-color: #f0f0f0;
+}
+
+tbody:nth-child(even) {
+    background-color: blanchedalmond;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+}
+
+#btn-salvar {
+    background-color: rgb(43, 55, 226);
+    padding: 0 3px;
+    cursor: pointer;
+    color: whitesmoke;
+}
+
+#btn-salvar:hover {
+    box-shadow: 1px 1px 5px 5px rgb(170, 169, 169);
+}
+
+#btn-apagar {
+    background-color: rgb(226, 43, 43);
+    padding: 0 3px;
+    cursor: pointer;
+    color: whitesmoke;
+    height: 1.5rem;
+}
+
+#btn-apagar:hover {
+    box-shadow: 1px 1px 5px 5px rgb(170, 169, 169);
+}
+
+#btn-editar {
+    background-color: rgb(4, 131, 14);
+    padding: 0 3px;
+    cursor: pointer;
+    color: whitesmoke;
+    height: 1.5rem;
+}
+
+#btn-editar:hover {
+    box-shadow: 1px 1px 5px 5px rgb(170, 169, 169);
+}
+
+
+
+
