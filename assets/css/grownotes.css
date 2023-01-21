@@ -33,13 +33,15 @@ form #input-detalhamento {
     border-radius: 5px 0 0 5px;
 }
 
-table {
+.tabela {
     margin-top: 1.5rem;
     border-spacing: 0;
+    border-collapse: collapse;
 }
 
-tr {
-    height: 1.5rem;
+.tabela tr {
+    height: 2rem;
+    border-bottom: 1px solid black;
 }
 
 td:first-child {
@@ -59,12 +61,9 @@ thead {
     height: 2.5rem;
 }
 
-tbody:nth-child(odd) {
-    background-color: #f0f0f0;
-}
-
-tbody:nth-child(even) {
-    background-color: blanchedalmond;
+tbody {
+    background: rgb(34,193,195);
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
 }
 
 button {
@@ -83,7 +82,7 @@ button {
     box-shadow: 1px 1px 5px 5px rgb(170, 169, 169);
 }
 
-#btn-apagar {
+.btn-apagar {
     background-color: rgb(226, 43, 43);
     padding: 0 3px;
     cursor: pointer;
@@ -91,11 +90,11 @@ button {
     height: 1.5rem;
 }
 
-#btn-apagar:hover {
+.btn-apagar:hover {
     box-shadow: 1px 1px 5px 5px rgb(170, 169, 169);
 }
 
-#btn-editar {
+.btn-editar {
     background-color: rgb(4, 131, 14);
     padding: 0 3px;
     cursor: pointer;
@@ -103,7 +102,7 @@ button {
     height: 1.5rem;
 }
 
-#btn-editar:hover {
+.btn-editar:hover {
     box-shadow: 1px 1px 5px 5px rgb(170, 169, 169);
 }
 
