@@ -1,28 +1,14 @@
-// const loginUsuario = document.querySelector('#login-usuario');//const para pegar o valor do email. lembra de usar o .value
-// const loginSenha = document.querySelector('#login-senha'); //const para pegar o valor da senha. lembra de usar o .value
-// const btnEntrar = document.querySelector('#botao-entrar')
-// const cadastroEmail = document.querySelector('#cadastro-email');
-// const cadastroSenha = document.querySelector('#cadastro-senha');
-// const cadastroRepeteSenha = document.querySelector('#cadastro-repete-senha');
-// const inputDescricao = document.querySelector('#input-descricao');
-// const inputDetalhamento = document.querySelector('#input-detalhamento');
-// const btnApagar = document.querySelector('#btn-apagar');
-// const btnEditar = document.querySelector('#btn-entrar');
 const btnSalvar = document.querySelector('#btn-salvar');
-let numeroDeLinhas = 1;
-btnSalvar.addEventListener("click", function(event){
-    event.preventDefault()
-    const inputDescricao = document.querySelector('#input-descricao');
-    const inputDetalhamento = document.querySelector('#input-detalhamento');
-    // const numeroUltimoItem = document.querySelector('#tabela').children[1].children.length
-    criaItem(numeroDeLinhas,inputDescricao.value, inputDetalhamento.value)
-  });
 
+let numeroDeLinhas = document.querySelectorAll('tr').length;//esse contador tem que passar a contar quantas linhas existem
+//função para criar item na tabela
 function criaItem(posicao,descricao,detalhamento) {
     //seleciona a tabela
     const tabela = document.querySelector('#tabela')
     //cria linha
     const novaLinha = document.createElement('tr')
+    // adiciona id na linha
+    novaLinha.setAttribute("id", `linha${numeroDeLinhas}`);
     //cria as células
     const CelNumero = document.createElement("td");
     const CelDescricao = document.createElement("td");
@@ -34,6 +20,9 @@ function criaItem(posicao,descricao,detalhamento) {
     //coloca classe nos botoes
     btnApagar.classList.add('btn-apagar');
     btnEditar.classList.add('btn-editar');
+    //coloca id nos botoes
+    btnApagar.setAttribute("id", "btn-apagar");
+    btnEditar.setAttribute("id", "btn-editar");
     //coloca o conteudo dos botoes
     btnApagar.textContent = "Apagar";
     btnEditar.textContent = "Editar";
@@ -57,4 +46,16 @@ function criaItem(posicao,descricao,detalhamento) {
     inputDetalhamento.value = ''
     //adiciona 1 ao contador de linhas
     numeroDeLinhas++
+    //função para apagar item da lista com o click do botao apagar
+    btnApagar.addEventListener("click", function(event) {
+    btnApagar.parentNode.parentNode.remove()
+})
 }
+//escuta evento de click no botao salvar
+btnSalvar.addEventListener("click", function(event){
+    event.preventDefault()
+    const inputDescricao = document.querySelector('#input-descricao');
+    const inputDetalhamento = document.querySelector('#input-detalhamento');
+    // const numeroUltimoItem = document.querySelector('#tabela').children[1].children.length
+    criaItem(numeroDeLinhas,inputDescricao.value, inputDetalhamento.value)
+}); 
