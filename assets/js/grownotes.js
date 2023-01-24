@@ -59,3 +59,4 @@ btnSalvar.addEventListener("click", function(event){
     // const numeroUltimoItem = document.querySelector('#tabela').children[1].children.length
     criaItem(numeroDeLinhas,inputDescricao.value, inputDetalhamento.value)
 }); 
+
