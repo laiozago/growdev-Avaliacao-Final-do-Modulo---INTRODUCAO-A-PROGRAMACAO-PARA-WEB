@@ -28,6 +28,10 @@ form #input-descricao {
     border-radius: 5px;
 }
 
+form .input-descricao {
+    border: 2px solid red;
+}
+
 form #input-detalhamento {
     width: 60vw;
     border-radius: 5px 0 0 5px;

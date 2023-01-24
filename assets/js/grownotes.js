@@ -56,7 +56,12 @@ btnSalvar.addEventListener("click", function(event){
     event.preventDefault()
     const inputDescricao = document.querySelector('#input-descricao');
     const inputDetalhamento = document.querySelector('#input-detalhamento');
+    if (!inputDescricao.value) {
+        inputDescricao.classList.add('input-descricao')
+    }else {
+        inputDescricao.classList.remove('input-descricao')
+        criaItem(numeroDeLinhas,inputDescricao.value, inputDetalhamento.value)
+    }
     // const numeroUltimoItem = document.querySelector('#tabela').children[1].children.length
-    criaItem(numeroDeLinhas,inputDescricao.value, inputDetalhamento.value)
 }); 
 
