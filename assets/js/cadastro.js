@@ -13,13 +13,16 @@ let botaoCriaConta = document.querySelector('#botao-entrar')
 
 botaoCriaConta.addEventListener("click",function(){
     
-    if (senha.value === senhaRepetida.value) {
-        senhaRepetida.classList.remove('cadastro-repete-senha')
+    if (senha.value === senhaRepetida.value && usuario.value) {
+        senhaRepetida.classList.remove('review')
+        usuario.classList.remove('review')
         localStorage.setItem('login',usuario.value)
         localStorage.setItem('senha', senha.value);
         window.open('index.html',"_self")
-    } else {
-        senhaRepetida.classList.add('cadastro-repete-senha')
+    } else if(senha.value!=senhaRepetida.value){
+        senhaRepetida.classList.add('review')
+    }else if(!usuario.value){
+        usuario.classList.add('review')
     }
     
 })
