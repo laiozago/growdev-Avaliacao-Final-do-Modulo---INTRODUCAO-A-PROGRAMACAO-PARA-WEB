@@ -64,7 +64,32 @@ function criaItem(posicao,descricao,detalhamento) {
         let items = JSON.parse(localStorage.getItem('items')) || [];
         items = items.filter(item => item.posicao != posicao)
         localStorage.setItem('items', JSON.stringify(items));
-})
+    })
+
+    //função para editar item da lista com o click do botao editar
+    function editaItem() {
+        let btnEditar = document.querySelectorAll('#btn-editar');
+        btnEditar.forEach(btn => {
+        btn.addEventListener("click", function(event) {
+            const id = event.target.parentNode.parentNode.getAttribute("id");
+            const linha = document.querySelector(`#${id}`);
+            const celDescricao = linha.querySelector('td:nth-child(2)');
+            const celDetalhamento = linha.querySelector('td:nth-child(3)');
+            const inputDescricao = document.querySelector('#input-descricao');
+            const inputDetalhamento = document.querySelector('#input-detalhamento');
+            inputDescricao.value = celDescricao.textContent;
+            inputDetalhamento.value = celDetalhamento.textContent;
+            linha.remove();
+            //remove do LocalStorage
+            let items = JSON.parse(localStorage.getItem('items')) || [];
+            items = items.filter(item => item.posicao != id.slice(4))
+            localStorage.setItem('items', JSON.stringify(items));
+        })
+    })
+}
+
+    //chama a função para editar item da lista com o click do botao editar
+    editaItem();
 }
 //escuta evento de click no botao salvar
 btnSalvar.addEventListener("click", function(event){
@@ -99,3 +124,4 @@ function carregaItens() {
 }
 //chama a função para carregar os itens do LocalStorage ao carregar a página
 carregaItens()
+
