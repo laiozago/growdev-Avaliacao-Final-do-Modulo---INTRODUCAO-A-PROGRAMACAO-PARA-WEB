@@ -1,6 +1,14 @@
 const btnSalvar = document.querySelector('#btn-salvar');
+let numeroDeLinhas;
 
-let numeroDeLinhas = document.querySelectorAll('tr').length;//esse contador tem que passar a contar quantas linhas existem
+//função para salvar no LocalStorage
+function salvaNoLocalStorage(posicao, descricao, detalhamento) {
+    let items = JSON.parse(localStorage.getItem('items')) || [];
+    let item = { posicao, descricao, detalhamento };
+    items.push(item);
+    localStorage.setItem('items', JSON.stringify(items));
+}
+
 //função para criar item na tabela
 function criaItem(posicao,descricao,detalhamento) {
     //seleciona a tabela
@@ -39,6 +47,8 @@ function criaItem(posicao,descricao,detalhamento) {
     novaLinha.appendChild(CelAcao)
     //adiciona nova linha a tabela
     tabela.appendChild(novaLinha)
+    //salva no LocalStorage
+    salvaNoLocalStorage(posicao, descricao, detalhamento);
     //limpa os campos de imput
     const inputDescricao = document.querySelector('#input-descricao');
     const inputDetalhamento = document.querySelector('#input-detalhamento');
@@ -48,12 +58,19 @@ function criaItem(posicao,descricao,detalhamento) {
     numeroDeLinhas++
     //função para apagar item da lista com o click do botao apagar
     btnApagar.addEventListener("click", function(event) {
-    btnApagar.parentNode.parentNode.remove()
+        const id = event.target.parentNode.parentNode.getAttribute("id");
+        document.querySelector(`#${id}`).remove();
+        //remove do LocalStorage
+        let items = JSON.parse(localStorage.getItem('items')) || [];
+        items = items.filter(item => item.posicao != posicao)
+        localStorage.setItem('items', JSON.stringify(items));
 })
 }
 //escuta evento de click no botao salvar
 btnSalvar.addEventListener("click", function(event){
     event.preventDefault()
+    //conta quantas linhas existem
+    numeroDeLinhas = document.querySelectorAll('tr').length;
     const inputDescricao = document.querySelector('#input-descricao');
     const inputDetalhamento = document.querySelector('#input-detalhamento');
     if (!inputDescricao.value) {
@@ -62,6 +79,23 @@ btnSalvar.addEventListener("click", function(event){
         inputDescricao.classList.remove('input-descricao')
         criaItem(numeroDeLinhas,inputDescricao.value, inputDetalhamento.value)
     }
-    // const numeroUltimoItem = document.querySelector('#tabela').children[1].children.length
 }); 
 
+//função para carregar os itens do LocalStorage
+function carregaItens() {
+    //confere o que está na tela
+    const tabela = document.querySelector('#tabela')
+    //se houver linhas, remove todas
+    if (tabela.rows.length > 1) {
+        for (let i = tabela.rows.length - 1; i > 0; i--) {
+            tabela.deleteRow(i);
+        }
+    }
+    //carrega os itens do LocalStorage
+    let items = JSON.parse(localStorage.getItem('items')) || [];
+    items.forEach(item => {
+        criaItem(item.posicao, item.descricao, item.detalhamento)
+    })
+}
+//chama a função para carregar os itens do LocalStorage ao carregar a página
+carregaItens()
