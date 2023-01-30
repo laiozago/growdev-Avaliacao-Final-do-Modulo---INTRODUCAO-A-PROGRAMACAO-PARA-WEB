@@ -7,7 +7,9 @@ btnEntrar.addEventListener("click", function () {
         if (userName.value == localStorage.getItem('login') && userPassword.value == localStorage.getItem('senha')) {
             window.location.href = "grownotes.html";
             console.log('é pra abrir');
-        } else {
-            alert("Voce não tem cadastro, clique em CRIAR CONTA e faça seu cadastro agora!")
+        } else if (userName.value == localStorage.getItem('login') && !(userPassword.value == localStorage.getItem('senha'))) {
+            alert("Senha incorreta");
+        } else if (!(userName.value == localStorage.getItem('login')) && userPassword.value == localStorage.getItem('senha')) {
+            alert("Usuário incorreto ou não cadastrado");
         }
 })
