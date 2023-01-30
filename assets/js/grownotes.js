@@ -1,7 +1,10 @@
 const btnSalvar = document.querySelector('#btn-salvar');
 let numeroDeLinhas;
 
-//função para salvar no LocalStorage
+//*chama a função para carregar os itens do LocalStorage ao carregar a página
+carregaItens()
+
+//*função para salvar no LocalStorage
 function salvaNoLocalStorage(posicao, descricao, detalhamento) {
     let items = JSON.parse(localStorage.getItem('items')) || [];
     let item = { posicao, descricao, detalhamento };
@@ -9,7 +12,7 @@ function salvaNoLocalStorage(posicao, descricao, detalhamento) {
     localStorage.setItem('items', JSON.stringify(items));
 }
 
-//função para criar item na tabela
+//*função para criar item na tabela
 function criaItem(posicao,descricao,detalhamento) {
     //seleciona a tabela
     const tabela = document.querySelector('#tabela')
@@ -66,7 +69,7 @@ function criaItem(posicao,descricao,detalhamento) {
         localStorage.setItem('items', JSON.stringify(items));
     })
 
-    //função para editar item da lista com o click do botao editar
+    //*função para editar item da lista com o click do botao editar
     function editaItem() {
         let btnEditar = document.querySelectorAll('#btn-editar');
         btnEditar.forEach(btn => {
@@ -88,25 +91,11 @@ function criaItem(posicao,descricao,detalhamento) {
     })
 }
 
-    //chama a função para editar item da lista com o click do botao editar
+    //*chama a função para editar item da lista com o click do botao editar
     editaItem();
 }
-//escuta evento de click no botao salvar
-btnSalvar.addEventListener("click", function(event){
-    event.preventDefault()
-    //conta quantas linhas existem
-    numeroDeLinhas = document.querySelectorAll('tr').length;
-    const inputDescricao = document.querySelector('#input-descricao');
-    const inputDetalhamento = document.querySelector('#input-detalhamento');
-    if (!inputDescricao.value) {
-        inputDescricao.classList.add('input-descricao')
-    }else {
-        inputDescricao.classList.remove('input-descricao')
-        criaItem(numeroDeLinhas,inputDescricao.value, inputDetalhamento.value)
-    }
-}); 
 
-//função para carregar os itens do LocalStorage
+//*função para carregar os itens do LocalStorage
 function carregaItens() {
     //confere o que está na tela
     const tabela = document.querySelector('#tabela')
@@ -122,8 +111,21 @@ function carregaItens() {
         criaItem(item.posicao, item.descricao, item.detalhamento)
     })
 }
-//chama a função para carregar os itens do LocalStorage ao carregar a página
-carregaItens()
+
+//*escuta evento de click no botao salvar
+btnSalvar.addEventListener("click", function(event){
+    event.preventDefault()
+    //conta quantas linhas existem
+    numeroDeLinhas = document.querySelectorAll('tr').length;
+    const inputDescricao = document.querySelector('#input-descricao');
+    const inputDetalhamento = document.querySelector('#input-detalhamento');
+    if (!inputDescricao.value) {
+        inputDescricao.classList.add('input-descricao')
+    }else {
+        inputDescricao.classList.remove('input-descricao')
+        criaItem(numeroDeLinhas,inputDescricao.value, inputDetalhamento.value)
+    }
+}); 
 
 //todo: melhorar a função de carrergar os itens do LocalStorage
 //todo: compartimentar o código em funções menores
