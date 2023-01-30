@@ -125,3 +125,5 @@ function carregaItens() {
 //chama a função para carregar os itens do LocalStorage ao carregar a página
 carregaItens()
 
+//todo: melhorar a função de carrergar os itens do LocalStorage
+//todo: compartimentar o código em funções menores
