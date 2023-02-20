@@ -129,5 +129,6 @@ btnSalvar.addEventListener("click", function(event){
     }
 }); 
 
-//todo: melhorar a função de carrergar os itens do LocalStorage
-//todo: compartimentar o código em funções menores
+//todo: mudar o localStorage para um banco de dados para poder ter mais de um usuário e cada usuário ter seu próprio banco de dados
+
+//usuarios = [{login: "teste", senha: "teste", notas: [{posicao: 1, descricao: "teste", detalhamento: "teste"}]}]
