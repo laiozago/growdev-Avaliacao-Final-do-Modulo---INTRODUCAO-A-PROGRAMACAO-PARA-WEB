@@ -9,7 +9,7 @@ let senhaRepetida = document.querySelector('#cadastro-repete-senha');
 let botaoCriaConta = document.querySelector('#botao-entrar')
 
 //*funcao para criar conta
-botaoCriaConta.addEventListener("click",function(){
+const criaConta = () => {
     //verifica se as senhas sao iguais e se o usuario digitou algo
     if (senha.value === senhaRepetida.value && usuario.value) {
         //remove a classe review da senha e do usuario
@@ -26,5 +26,6 @@ botaoCriaConta.addEventListener("click",function(){
     }else if(!usuario.value){
         usuario.classList.add('review')
     }
-    
-})
+}
+//*adiciona o evento de click no botao
+botaoCriaConta.addEventListener("click", criaConta)

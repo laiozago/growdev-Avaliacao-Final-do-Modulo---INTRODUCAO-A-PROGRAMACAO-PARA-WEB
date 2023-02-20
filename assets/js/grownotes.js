@@ -1,3 +1,5 @@
+//*código para a página de grownotes
+//pega o botão de salvar
 const btnSalvar = document.querySelector('#btn-salvar');
 let numeroDeLinhas;
 
@@ -5,7 +7,7 @@ let numeroDeLinhas;
 carregaItens()
 
 //*função para salvar no LocalStorage
-function salvaNoLocalStorage(posicao, descricao, detalhamento) {
+const salvaNoLocalStorage = (posicao, descricao, detalhamento) => {
     let items = JSON.parse(localStorage.getItem('items')) || [];
     let item = { posicao, descricao, detalhamento };
     items.push(item);
@@ -13,7 +15,7 @@ function salvaNoLocalStorage(posicao, descricao, detalhamento) {
 }
 
 //*função para criar item na tabela
-function criaItem(posicao,descricao,detalhamento) {
+const criaItem = (posicao,descricao,detalhamento) => {
     //seleciona a tabela
     const tabela = document.querySelector('#tabela')
     //cria linha
@@ -70,7 +72,7 @@ function criaItem(posicao,descricao,detalhamento) {
     })
 
     //*função para editar item da lista com o click do botao editar
-    function editaItem() {
+    const editaItem = () => {
         let btnEditar = document.querySelectorAll('#btn-editar');
         btnEditar.forEach(btn => {
         btn.addEventListener("click", function(event) {
@@ -96,7 +98,7 @@ function criaItem(posicao,descricao,detalhamento) {
 }
 
 //*função para carregar os itens do LocalStorage
-function carregaItens() {
+const carregaItens = () => {
     //confere o que está na tela
     const tabela = document.querySelector('#tabela')
     //se houver linhas, remove todas

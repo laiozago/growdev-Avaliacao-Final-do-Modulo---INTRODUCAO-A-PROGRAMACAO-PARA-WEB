@@ -1,7 +1,9 @@
+//*Código para página de login
+//pega o botão de entrar
 const btnEntrar = document.querySelector('#botao-entrar');
 
-//* Escuta o evento de click no botão de entrar
-btnEntrar.addEventListener("click", function () {
+//* Função para fazer o login
+const login = () => {
     // Pega os valores dos inputs de usuário e senha
     const userName = document.querySelector('#login-usuario');
     const userPassword = document.querySelector('#login-senha');
@@ -15,4 +17,7 @@ btnEntrar.addEventListener("click", function () {
             // Se a senha estiver correta, mas o usuário estiver incorreto, exibe uma mensagem de erro
             alert("Usuário incorreto ou não cadastrado");
         }
-})
+}
+
+//* Escuta o evento de click no botão de entrar
+btnEntrar.addEventListener("click", login)
