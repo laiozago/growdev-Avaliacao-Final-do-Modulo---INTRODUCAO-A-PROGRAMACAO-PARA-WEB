@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./assets/img/favicon.svg" type="image/x-icon">
-    <link rel="stylesheet" href="./assets/css/normalize.css">
+    <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Login | GrowNotes</title>
 </head>
@@ -15,15 +15,15 @@
             <img src="https://picsum.photos/500" alt="">
         </div>
         <div class='box box-login'>
-            <h1>Entrar no GrowNotes</h1>
-            <form action="" method="" class="entradas">
-                <input class="entrada-usuario" type="email" name="" id="login-usuario" placeholder="User name">
-                <input class="entrada-senha" type="password" name="" id="login-senha" placeholder="Password">
+            <header>
+                <h1>Entrar no GrowNotes</h1>
+            </header>
+            <form class="entradas">
+                <input class="entrada-usuario" type="email" name="login" id="login-usuario" placeholder="User name">
+                <input class="entrada-senha" type="password" name="senha" id="login-senha" placeholder="Password">
+                <input class="botao-entrar" type="button" name="btnEntrar" value="Entrar">
+                <input class="botao-cadastrar" type="button" name="btnCadastrar" value="Cadastrar">
             </form>
-            <div class="botoes">
-                <a id="botao-entrar" class="botao-entrar">Entrar</a>
-                <a class="botao-cadastrar" href="./cadastro.html">Criar conta</a>
-            </div>
         </div>
     </main>
     <script src="./assets/js/login.js"></script>

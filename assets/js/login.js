@@ -1,23 +1,46 @@
 //*Código para página de login
-//pega o botão de entrar
-const btnEntrar = document.querySelector('#botao-entrar');
+//pega o formulario
+const formulario = document.querySelector('form');
 
 //* Função para fazer o login
 const login = () => {
-    // Pega os valores dos inputs de usuário e senha
-    const userName = document.querySelector('#login-usuario');
-    const userPassword = document.querySelector('#login-senha');
-        // Verifica se o usuário e a senha estão corretos
-        if (userName.value == localStorage.getItem('login') && userPassword.value == localStorage.getItem('senha')) {
-            window.location.href = "grownotes.html";
-        } else if (userName.value == localStorage.getItem('login') && !(userPassword.value == localStorage.getItem('senha'))) {
-            // Se o usuário estiver correto, mas a senha estiver incorreta, exibe uma mensagem de erro
-            alert("Senha incorreta");
-        } else if (!(userName.value == localStorage.getItem('login')) && userPassword.value == localStorage.getItem('senha')) {
-            // Se a senha estiver correta, mas o usuário estiver incorreto, exibe uma mensagem de erro
-            alert("Usuário incorreto ou não cadastrado");
-        }
+    // Remove as classes review
+    formulario.login.classList.remove('review')
+    formulario.senha.classList.remove('review')
+
+    // Verifica se o usuário e a senha estão corretos
+    if (formulario.login.value == localStorage.getItem('login') && formulario.senha.value == localStorage.getItem('senha')) {
+        // Se estiverem corretos, abre a página de notas
+        window.open("grownotes.html","_self")
+    }
+    
+    // Se o usuário estiver correto, mas a senha estiver incorreta
+    if (formulario.login.value == localStorage.getItem('login') && !(formulario.senha.value == localStorage.getItem('senha'))) {
+        // add class review
+        formulario.senha.classList.add('review')
+    }
+    
+    // Se o login estiver vazio ou o usuário estiver incorreto ou não estiver cadastrado
+    if (!localStorage.getItem('login')||!formulario.login.value || !(formulario.login.value == localStorage.getItem('login'))) {
+        // add classes review
+        formulario.login.classList.add('review')
+    }
 }
 
 //* Escuta o evento de click no botão de entrar
-btnEntrar.addEventListener("click", login)
+formulario.btnEntrar.addEventListener("click", login)
+
+//* Escuta o enter no input de senha
+formulario.senha.addEventListener("keyup", (event) => {
+    // Se o enter for pressionado
+    if (event.keyCode === 13) {
+        // Faz o login
+        login()
+    }
+})
+
+//* Escuta o evento de click no botão de cadastrar
+formulario.btnCadastrar.addEventListener("click", () => {
+    // Abre a página de cadastro
+    window.open("cadastro.html","_self")
+})

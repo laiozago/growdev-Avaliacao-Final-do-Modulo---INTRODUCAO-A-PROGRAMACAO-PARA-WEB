@@ -5,17 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./assets/img/favicon.svg" type="image/x-icon">
-    <link rel="stylesheet" href="./assets/css/normalize.css">
-    <link rel="stylesheet" href="./assets/css/grownotes.css">
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Notas | GrowNotes</title>
 </head>
 <body>
     <main>
         <h1>Meus recados</h1>
         <form action="">
-            <input id="input-descricao" type="text" placeholder="Descrição">
-            <input id="input-detalhamento" type="text" placeholder="Detalhamento">
-            <button id="btn-salvar" type="submit">Salvar</button>
+            <input autofocus required id="input-descricao" type="text" name="descricao" placeholder="Descrição">
+            <input id="input-detalhamento" type="text" name="detalhamento" placeholder="Detalhamento">
+            <input id="btn-salvar" name="salvar" value="Salvar" type="button">
         </form>
         <table class="tabela" id="tabela">
             <thead class="cabecalho" id="cabecalho">

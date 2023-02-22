@@ -1,3 +1,28 @@
-.review {
-    border: 2px solid red!important;
+.cadastro-entradas {
+    display: contents;
+}
+
+.cadastro-entradas input {
+    height: 2em;
+    width: 80%;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.cadastro-entradas input:focus {
+    outline: none;
+}
+
+.cadastro-entradas input::placeholder {
+    text-align: center;
+}
+
+.cadastro-entradas input[type="button"] {
+    width: 50%;
+    background-color: #4CAF50;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
 }

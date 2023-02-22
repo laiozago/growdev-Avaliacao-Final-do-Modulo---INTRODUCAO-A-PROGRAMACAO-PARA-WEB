@@ -5,26 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./assets/img/favicon.svg" type="image/x-icon">
-    <link rel="stylesheet" href="./assets/css/normalize.css">
+    <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/cadastro.css">
     <title>Cadastro | GrowNotes</title>
 </head>
 <body>
     <main>
         <div class="box box-img">
-            <img src="https://picsum.photos/500" alt="">
+            <img src="https://picsum.photos/500" alt="Foto aleatória">
         </div>
         <div class='box box-login'>
-            <h1>Criar Conta</h1>
-            <form action="" method="" class="cadastro-entradas">
-                <input class="entrada-usuario" type="email" name="" id="cadastro-email" placeholder="user@site.com">
-                <input class="entrada-senha" type="password" name="" id="cadastro-senha" placeholder="Password">
-                <input class="entrada-senha" type="password" name="" id="cadastro-repete-senha" placeholder="Repeat Password">
+            <header>
+                <h1>Criar Conta</h1>
+            </header>
+            <form class="cadastro-entradas">
+                <input required type="email" name="email" placeholder="user@site.com">
+                <input required type="password" name="senha" placeholder="Password">
+                <input required type="password" name="repeteSenha" placeholder="Repeat Password">
+                <input type="button" name="btnCadastrar" value="Cadastrar">
             </form>
-            <div class="botoes" id="botao-entrar">
-                <button type="submit" class="botao-entrar">criar conta agora</button>
-            </div>
         </div>
     </main>
     <script src="./assets/js/cadastro.js"></script>
