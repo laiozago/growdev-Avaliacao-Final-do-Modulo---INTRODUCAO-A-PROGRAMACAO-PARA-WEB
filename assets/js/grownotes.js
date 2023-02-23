@@ -172,7 +172,7 @@ const addNota = () => {
 //* Função para carregar notas do localStorage
 const carregaNotas = () => {
     //pega as notas do localStorage
-    const notas = JSON.parse(localStorage.getItem("notas"));
+    const notas = JSON.parse(localStorage.getItem("notas")) || [];
     notas.forEach((nota) => {
         //separa a descrição e o detalhamento
         const descricao = nota.descricao;
