@@ -13,6 +13,7 @@ const criaConta = () => {
         //salva os dados no localstorage
         localStorage.setItem('login',formulario.email.value)
         localStorage.setItem('senha', formulario.senha.value);
+        localStorage.setItem('notas', '');
         //redireciona para a pagina de login
         window.open('index.html',"_self")
     }
