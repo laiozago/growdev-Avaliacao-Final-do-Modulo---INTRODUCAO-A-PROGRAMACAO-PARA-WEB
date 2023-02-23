@@ -84,6 +84,40 @@ const removeNota = () => {
         })
 }
 
+//* Função para editar nota da página e do localStorage adicionando o evento de click em todos os botão de editar
+const editaNota = () => {
+        //pega todos os botões de editar
+        const btnsEditar = document.querySelectorAll("tbody button:nth-child(1)");
+        //adiciona o evento de click em todos os botões de editar
+        btnsEditar.forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+                //pega a descrição da nota
+                const descricao = e.target.parentNode.parentNode.firstChild.textContent;
+                //pega o detalhamento da nota
+                const detalhamento = e.target.parentNode.parentNode.firstChild.nextSibling.textContent;
+                //pega as notas do localStorage
+                const notas = JSON.parse(localStorage.getItem("notas"));
+                //remove a nota do array
+                notas.forEach((nota, index) => {
+                    if(nota.descricao === descricao && nota.detalhamento === detalhamento){
+                        //adiciona o valor da descrição no campo descrição
+                        formulario.descricao.value = nota.descricao;
+                        //adiciona o valor do detalhamento no campo detalhamento
+                        formulario.detalhamento.value = nota.detalhamento;
+                        //remove a nota do array
+                        notas.splice(index, 1);
+                    }
+                })
+                //adiciona o array de notas no localStorage
+                localStorage.setItem("notas", JSON.stringify(notas));
+                //remove a nota da página
+                e.target.parentNode.parentNode.remove();
+                //coloca o foco no campo descrição
+                formulario.descricao.focus();
+            })
+        })
+}
+
 //* Função para adicionar nota na página e no localStorage
 const addNota = () => {
     //verifica se a descrição está preenchida no click do botão
@@ -127,47 +161,10 @@ const addNota = () => {
     }
     //chama a função para criar a nota no localStorage
     criaNotaNoLocalStorage(descricao, detalhamento);
-
-
     //chama a função para remover nota da página e do localStorage
     removeNota();
-
-    //* Função para editar nota da página e do localStorage adicionando o evento de click em todos os botão de editar
-    const editaNota = () => {
-        //pega todos os botões de editar
-        const btnsEditar = document.querySelectorAll("tbody button:nth-child(1)");
-        //adiciona o evento de click em todos os botões de editar
-        btnsEditar.forEach((btn) => {
-            btn.addEventListener("click", (e) => {
-                //pega a descrição da nota
-                const descricao = e.target.parentNode.parentNode.firstChild.textContent;
-                //pega o detalhamento da nota
-                const detalhamento = e.target.parentNode.parentNode.firstChild.nextSibling.textContent;
-                //pega as notas do localStorage
-                const notas = JSON.parse(localStorage.getItem("notas"));
-                //remove a nota do array
-                notas.forEach((nota, index) => {
-                    if(nota.descricao === descricao && nota.detalhamento === detalhamento){
-                        //adiciona o valor da descrição no campo descrição
-                        formulario.descricao.value = nota.descricao;
-                        //adiciona o valor do detalhamento no campo detalhamento
-                        formulario.detalhamento.value = nota.detalhamento;
-                        //remove a nota do array
-                        notas.splice(index, 1);
-                    }
-                })
-                //adiciona o array de notas no localStorage
-                localStorage.setItem("notas", JSON.stringify(notas));
-                //remove a nota da página
-                e.target.parentNode.parentNode.remove();
-                //coloca o foco no campo descrição
-                formulario.descricao.focus();
-            })
-        })
-    }
     //chama a função para editar nota da página e do localStorage
     editaNota();
-
     //chama a função para limpar os campos do formulário
     limpaCampos();
 }
@@ -195,3 +192,9 @@ formulario.detalhamento.addEventListener("keyup", (e) => {
         addNota();
     }
 })
+
+//chama a função para remover nota da página e do localStorage
+removeNota();
+
+//chama a função para editar nota da página e do localStorage
+editaNota();
