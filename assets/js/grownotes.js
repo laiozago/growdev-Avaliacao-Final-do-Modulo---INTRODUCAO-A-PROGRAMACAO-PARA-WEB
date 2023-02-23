@@ -1,7 +1,7 @@
 //* pega o formulario
 const formulario = document.querySelector('form');
 
-//verifica se a descrição está preenchida no blur do campo
+//*verifica se a descrição está preenchida no blur do campo
 formulario.descricao.addEventListener("blur", () => {
     if(formulario.descricao.value === ""){
         formulario.descricao.classList.add("review")
