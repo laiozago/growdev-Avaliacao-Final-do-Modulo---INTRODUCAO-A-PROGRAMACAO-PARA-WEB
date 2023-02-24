@@ -7,26 +7,33 @@ const login = () => {
     // Remove as classes review
     formulario.login.classList.remove('review')
     formulario.senha.classList.remove('review')
-
-    // Verifica se o usuário e a senha estão corretos
-    if (formulario.login.value == localStorage.getItem('login') && formulario.senha.value == localStorage.getItem('senha')) {
-        // Se estiverem corretos, abre a página de notas
-        window.open("grownotes.html","_self")
+    //verifica se a entrada usuarios existe no localstorage
+    if (!localStorage.getItem('usuarios')) {
+        //alerta que o usuário não está cadastrado
+        alert('Usuário não cadastrado')
+        //para a execução da função
+        return
     }
-    
-    // Se o usuário estiver correto, mas a senha estiver incorreta
-    if (formulario.login.value == localStorage.getItem('login') && !(formulario.senha.value == localStorage.getItem('senha'))) {
-        // add class review
-        formulario.senha.classList.add('review')
-    }
-    
-    // Se o login estiver vazio ou o usuário estiver incorreto ou não estiver cadastrado
-    if (!localStorage.getItem('login')||!formulario.login.value || !(formulario.login.value == localStorage.getItem('login'))) {
-        // add classes review
+    //pega do localstorage os usuarios cadastrados
+    const usuarios = JSON.parse(localStorage.getItem('usuarios'))
+    //verifica se o usuario existe, se não existir, adiciona a classe review no login e alerta que o usuario não está cadastrado
+    if (!usuarios.find(usuario => usuario.email === formulario.login.value)) {
         formulario.login.classList.add('review')
+        alert('Usuário não cadastrado')
+        return
     }
+    //pega o usuario que está tentando fazer o login
+    const usuario = usuarios.find(usuario => usuario.email === formulario.login.value)
+    //verifica se a senha está errada e adiciona a classe review na senha
+    if (usuario.senha != formulario.senha.value) {
+        formulario.senha.classList.add('review')
+        return
+    }
+    //se o usuario e a senha estiverem corretos, salva o login do usuario como usuarioLogado no localStorage
+    localStorage.setItem('usuarioLogado', usuario.email)
+    //redireciona para a pagina de notas
+    window.open('grownotes.html',"_self")
 }
-
 //* Escuta o evento de click no botão de entrar
 formulario.btnEntrar.addEventListener("click", login)
 
