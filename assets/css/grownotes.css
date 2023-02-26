@@ -18,25 +18,25 @@ h1 {
 }
 
 form {
-    margin-top: 1em;
+    margin-top: 1rem;
     display: flex;
 }
 
 form input {
-    height: 1.5em;
+    height: 1.5rem;
     border: 1px solid black;
-    padding: 0 1em;
+    padding: 0 1rem;
     caret-color: rgb(43, 55, 226);
 }
 
 form input[name="descricao"] {
-    width: 10vw;
-    margin-right: 1em;
+    width: 10vdw;
+    margin-right: 1rem;
     border-radius: 5px;
 }
 
 form input[name="detalhamento"] {
-    width: 30vw;
+    width: 30dvw;
     border-radius: 5px 0 0 5px;
 }
 
@@ -57,6 +57,7 @@ form input[name="salvar"]:hover {
     margin-top: 1.5rem;
     text-align: center;
     line-height: 25px;
+    width: 75dvw;
 }
 
 .tabela tr {
@@ -82,18 +83,6 @@ tbody td:nth-child(4) {
     height: 30px;
 }
 
-td:first-child {
-    width: 10vw;
-}
-td:first-child + td {
-    width: 20vw;
-}
-td:first-child + td + td {
-    width: 50vw;
-}
-td:first-child + td + td +td {
-    width: 20vw;
-}
 thead {
     background-color: #f0f0f0;
     height: 2.5rem;
