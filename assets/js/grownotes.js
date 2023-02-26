@@ -259,6 +259,11 @@ removeNota();
 //chama a função para editar nota da página e do localStorage
 editaNota();
 
+//listener para saida da página
+window.addEventListener("beforeunload", () => {
+    localStorage.removeItem("usuarioLogado");
+})
+
 //* todo: mais de um usuário
 //* todo: id unico para cada nota
-//todo: obrigar a passar pela tela de login
+//* todo: obrigar a passar pela tela de login
