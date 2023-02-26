@@ -92,9 +92,9 @@ const removeNota = () => {
     btnsExcluir.forEach((btn) => {
         btn.addEventListener("click", (e) => {
             //pega a descrição da nota
-            const descricao = e.target.parentNode.parentNode.firstChild.textContent;
+            const descricao = e.target.parentNode.parentNode.firstChild.nextSibling.textContent;
             //pega o detalhamento da nota
-            const detalhamento = e.target.parentNode.parentNode.firstChild.nextSibling.textContent;
+            const detalhamento = e.target.parentNode.parentNode.firstChild.nextSibling.nextSibling.textContent;
             //pega os usuarios do localStorage
             const usuarios = JSON.parse(localStorage.usuarios)
             //pega as notas o usuario logado
@@ -105,11 +105,12 @@ const removeNota = () => {
                 }
             });
             //remove a nota do array
-            notas.forEach((nota, index) => {
+            for (let i = notas.length - 1; i >= 0; i--) {
+                const nota = notas[i];
                 if (nota.descricao === descricao && nota.detalhamento === detalhamento) {
-                    notas.splice(index, 1);
+                    notas.splice(i, 1);
                 }
-            })
+            }
             //atualiza os usuarios no localStorage
             localStorage.setItem("usuarios", JSON.stringify(usuarios));
             //remove a nota da página
@@ -134,9 +135,9 @@ const editaNota = () => {
     btnsEditar.forEach((btn) => {
         btn.addEventListener("click", (e) => {
             //pega a descrição da nota
-            const descricao = e.target.parentNode.parentNode.firstChild.textContent;
+            const descricao = e.target.parentNode.parentNode.firstChild.nextSibling.textContent;
             //pega o detalhamento da nota
-            const detalhamento = e.target.parentNode.parentNode.firstChild.nextSibling.textContent;
+            const detalhamento = e.target.parentNode.parentNode.firstChild.nextSibling.nextSibling.textContent;
             //remove a nota da página
             e
                 .target
