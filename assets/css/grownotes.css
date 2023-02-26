@@ -46,7 +46,7 @@ form input[name="salvar"] {
     cursor: pointer;
     color: whitesmoke;
     border: none;
-    height: 1.4rem;
+    height: 1.6rem;
 }
 
 form input[name="salvar"]:hover {
