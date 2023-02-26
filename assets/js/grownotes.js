@@ -1,6 +1,19 @@
 //* pega o formulario
 const formulario = document.querySelector('form');
 
+//* função para gerar o id da nota
+const gerarId = () => {
+    //confere se não existe o ultimoId no localStorage
+    if (!localStorage.ultimoId) {
+        //se não existir, cria o ultimoId com o valor 1
+        localStorage.ultimoId = 0;
+    }
+    //incrementa o ultimoId
+    localStorage.ultimoId = parseInt(localStorage.ultimoId) + 1;
+    //retorna o ultimoId
+    return localStorage.ultimoId;
+}
+
 //*Pega o usuario logado
 const usuarioLogado = localStorage.getItem("usuarioLogado");
 
@@ -30,9 +43,11 @@ const limpaCampos = () => {
 }
 
 //* Função para criar a nota na tela
-const criaNotaNaTela = (descricao, detalhamento) => {
+const criaNotaNaTela = (id,descricao, detalhamento) => {
     //criar um elemento tr
     const tr = document.createElement("tr");
+    //criar um elemento td para o id
+    const tdId = document.createElement("td");
     //criar um elemento td para a descrição
     const tdDescricao = document.createElement("td");
     //criar um elemento td para o detalhamento
@@ -47,6 +62,8 @@ const criaNotaNaTela = (descricao, detalhamento) => {
     btnEditar.textContent = "Editar";
     //colocar o texto do botão de excluir
     btnExcluir.textContent = "Excluir";
+    //colocar o id no td
+    tdId.textContent = id;
     //colocar a descrição no td
     tdDescricao.textContent = descricao;
     //colocar o detalhamento no td
@@ -55,6 +72,8 @@ const criaNotaNaTela = (descricao, detalhamento) => {
     tdBtn.appendChild(btnEditar);
     //colocar o botão de excluir no td
     tdBtn.appendChild(btnExcluir);
+    //colocar o id na tr
+    tr.appendChild(tdId);
     //colocar o td da descrição na tr
     tr.appendChild(tdDescricao);
     //colocar o td do detalhamento na tr
@@ -62,9 +81,7 @@ const criaNotaNaTela = (descricao, detalhamento) => {
     //colocar o td dos botões na tr
     tr.appendChild(tdBtn);
     //colocar a tr na tabela
-    document
-        .querySelector("tbody")
-        .appendChild(tr);
+    document.querySelector("tbody").appendChild(tr);
 }
 
 //* Função para remover nota da página e do localStorage adicionando o evento de click em todos os botão de excluir
@@ -164,32 +181,26 @@ const addNota = () => {
     //verifica se a descrição está preenchida no click do botão
     if (formulario.descricao.value === "") {
         //adiciona a classe review no campo descrição
-        formulario
-            .descricao
-            .classList
-            .add("review")
+        formulario.descricao.classList.add("review")
         return
     }
     //remove a classe review no campo descrição
-    formulario
-        .descricao
-        .classList
-        .remove("review");
+    formulario.descricao.classList.remove("review");
     //captura o valor da descrição e do detalhamento
     const descricao = formulario.descricao.value;
     const detalhamento = formulario.detalhamento.value;
+    //gera um id para a nota
+    const id = gerarId();
     //chama a função para criar a nota na tela
-    criaNotaNaTela(descricao, detalhamento);
+    criaNotaNaTela(id,descricao, detalhamento);
     //* Função para criar a nota no localStorage
-    const criaNotaNoLocalStorage = (descricao, detalhamento) => {
+    const criaNotaNoLocalStorage = (id,descricao, detalhamento) => {
         //cria um objeto com a descrição e o detalhamento
-        const nota = {
-            descricao,
-            detalhamento
-        }
+        const nota = {id,descricao,detalhamento}
         //coloca a descrição e detalhamento na nota
         nota.descricao = descricao;
         nota.detalhamento = detalhamento;
+        nota.id = id;
         //pega os usuarios do localStorage
         const usuarios = JSON.parse(localStorage.usuarios);
         //adiciona a nota no array de notas do usuário logado
@@ -204,7 +215,7 @@ const addNota = () => {
         localStorage.setItem("usuarios", JSON.stringify(usuarios));
     }
     //chama a função para criar a nota no localStorage
-    criaNotaNoLocalStorage(descricao, detalhamento);
+    criaNotaNoLocalStorage(id,descricao, detalhamento);
     //chama a função para remover nota da página e do localStorage
     removeNota();
     //chama a função para editar nota da página e do localStorage
@@ -224,7 +235,7 @@ const carregaNotas = () => {
             usuario
                 .notas
                 .forEach((nota) => {
-                    criaNotaNaTela(nota.descricao, nota.detalhamento);
+                    criaNotaNaTela(nota.id,nota.descricao, nota.detalhamento);
                 })
         }
     })
@@ -249,5 +260,5 @@ removeNota();
 editaNota();
 
 //* todo: mais de um usuário
-//todo: id unico para cada nota
+//* todo: id unico para cada nota
 //todo: obrigar a passar pela tela de login
