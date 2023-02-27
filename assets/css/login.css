@@ -1,5 +1,5 @@
 /* Estilização da página index.html */
-
+@import url('./variaveis.css');
 .box {
     position: fixed;
     height: 100vh;
@@ -39,7 +39,7 @@
 .entradas input {
     height: 2em;
     width: 80%;
-    border: 1px solid black;
+    border: 1px solid var(--cor-preto);
     border-radius: 5px;
     text-align: center;
 }
@@ -54,7 +54,7 @@
     padding: 1em 0;
     line-height: .5em;
     text-decoration: none;
-    color: black;
+    color: var(--cor-preto);
     letter-spacing: 1px;
     text-transform: uppercase;
     border-radius: 5px;
@@ -62,7 +62,7 @@
 } 
 
 .botao-entrar {
-    background-color: green;
+    background-color: var(--cor-verde);
 }
 
 .entradas input[type="button"]:hover {
@@ -74,7 +74,7 @@
 .botao-cadastrar {
     padding: 1em;
     text-decoration: none;
-    color: black;
+    color: var(--cor-preto);
     letter-spacing: 1px;
     text-transform: uppercase;
 }

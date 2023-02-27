@@ -1,3 +1,4 @@
+@import url('./variaveis.css');
 .cadastro-entradas {
     display: contents;
 }
@@ -5,7 +6,7 @@
 .cadastro-entradas input {
     height: 2em;
     width: 80%;
-    border: 1px solid black;
+    border: 1px solid var(--cor-preto);
     border-radius: 5px;
     text-align: center;
 }
@@ -20,9 +21,9 @@
 
 .cadastro-entradas input[type="button"] {
     width: 50%;
-    background-color: #4CAF50;
+    background-color: var(--cor-verde);
     text-transform: uppercase;
-    color: white;
+    color: var(--cor-branco);
     font-weight: bold;
     cursor: pointer;
 }

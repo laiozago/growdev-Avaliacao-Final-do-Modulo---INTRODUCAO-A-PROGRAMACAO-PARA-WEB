@@ -1,3 +1,4 @@
+@import url('./variaveis.css');
 * {
     margin: 0;
     padding: 0;
@@ -24,9 +25,9 @@ form {
 
 form input {
     height: 1.5rem;
-    border: 1px solid black;
+    border: 1px solid var(--cor-preto);
     padding: 0 1rem;
-    caret-color: rgb(43, 55, 226);
+    caret-color: var(--cor-azul);
 }
 
 form input[name="descricao"] {
@@ -41,16 +42,19 @@ form input[name="detalhamento"] {
 }
 
 form input[name="salvar"] {
-    background-color: rgb(43, 55, 226);
+    background-color: var(--cor-azul);
     padding: 0 3px;
     cursor: pointer;
-    color: whitesmoke;
+    color: var(--cor-branco);
     border: none;
     height: 1.6rem;
+    transition: 0.3s;
+    font-weight: bold;
+    border-radius: 50px;
 }
 
 form input[name="salvar"]:hover {
-    color: rgb(247, 160, 128);
+    box-shadow: 0.5px 0.5px 2.5px 2.5px var(--cor-shadow);
 }
 
 .tabela {
@@ -62,11 +66,11 @@ form input[name="salvar"]:hover {
 
 .tabela tr {
     height: 2rem;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--cor-preto);
 }
 
 tbody tr:nth-child(even) {
-    background-color: #f0f0f0;
+    background-color: var(--cor-branco);
 }
 
 tbody td:nth-child(2), tbody td:nth-child(3){
@@ -84,7 +88,7 @@ tbody td:nth-child(4) {
 }
 
 thead {
-    background-color: #f0f0f0;
+    background-color: var(--cor-branco);
     height: 2.5rem;
 }
 
@@ -94,21 +98,21 @@ tbody td button{
     margin: 0 5px;
     padding: 0 3px;
     cursor: pointer;
-    color: whitesmoke;
+    color: var(--cor-branco);
     height: 1.5rem;
     transition: 0.3s;
 }
 
 tbody td button:nth-child(2) {
-    background-color: rgb(226, 43, 43);
+    background-color: var(--cor-vermelho);
 }
 
 tbody td button:nth-child(1) {
-    background-color: rgb(4, 131, 14);
+    background-color: var(--cor-verde);
 }
 
 tbody td button:nth-child(2):hover, tbody td button:nth-child(1):hover {
-    box-shadow: 0.5px 0.5px 2.5px 2.5px rgb(170, 169, 169);
+    box-shadow: 0.5px 0.5px 2.5px 2.5px var(--cor-shadow);
 }
 
 .review {
