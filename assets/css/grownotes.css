@@ -21,6 +21,8 @@ h1 {
 form {
     margin-top: 1rem;
     display: flex;
+    flex-direction: row;
+    gap: 5px;
 }
 
 form input {
@@ -32,13 +34,12 @@ form input {
 
 form input[name="descricao"] {
     width: 10vdw;
-    margin-right: 1rem;
     border-radius: 5px;
 }
 
 form input[name="detalhamento"] {
-    width: 30dvw;
-    border-radius: 5px 0 0 5px;
+    width: 30vw;
+    border-radius: 5px;
 }
 
 form input[name="salvar"] {
@@ -50,7 +51,7 @@ form input[name="salvar"] {
     height: 1.6rem;
     transition: 0.3s;
     font-weight: bold;
-    border-radius: 50px;
+    border-radius: 5px;
 }
 
 form input[name="salvar"]:hover {
@@ -61,7 +62,7 @@ form input[name="salvar"]:hover {
     margin-top: 1.5rem;
     text-align: center;
     line-height: 25px;
-    width: 75dvw;
+    width: 75vw;
 }
 
 .tabela tr {
@@ -70,7 +71,7 @@ form input[name="salvar"]:hover {
 }
 
 tbody tr:nth-child(even) {
-    background-color: var(--cor-branco);
+    background-color: var(--cor-cinza);
 }
 
 tbody td:nth-child(2), tbody td:nth-child(3){
@@ -117,4 +118,25 @@ tbody td button:nth-child(2):hover, tbody td button:nth-child(1):hover {
 
 .review {
     border: 2px solid red!important;
+}
+
+@media (max-width: 425px) {
+    form {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    form input {
+        width: 80vw;
+    }
+
+    form input[name="detalhamento"] {
+        width: 80vw;
+    }
+
+    form input[name="salvar"] {
+        width: 40vw;
+    }
 }
