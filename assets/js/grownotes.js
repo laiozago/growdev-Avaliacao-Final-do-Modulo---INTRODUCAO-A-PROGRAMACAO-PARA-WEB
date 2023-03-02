@@ -1,17 +1,11 @@
+import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
 //* pega o formulario
 const formulario = document.querySelector('form');
-
 //* função para gerar o id da nota
 const gerarId = () => {
-    //confere se não existe o ultimoId no localStorage
-    if (!localStorage.ultimoId) {
-        //se não existir, cria o ultimoId com o valor 1
-        localStorage.ultimoId = 0;
-    }
-    //incrementa o ultimoId
-    localStorage.ultimoId = parseInt(localStorage.ultimoId) + 1;
+    let myuuid = uuidv4();
     //retorna o ultimoId
-    return localStorage.ultimoId;
+    return myuuid;
 }
 
 //*Pega o usuario logado
@@ -40,6 +34,7 @@ const limpaCampos = () => {
     formulario
         .descricao
         .focus();
+    numerarLinhas();
 }
 
 //* Função para criar a nota na tela
@@ -95,6 +90,8 @@ const removeNota = () => {
             const descricao = e.target.parentNode.parentNode.firstChild.nextSibling.textContent;
             //pega o detalhamento da nota
             const detalhamento = e.target.parentNode.parentNode.firstChild.nextSibling.nextSibling.textContent;
+            //pega o id da nota
+            const id = e.target.parentNode.parentNode.firstChild.textContent;
             //pega os usuarios do localStorage
             const usuarios = JSON.parse(localStorage.usuarios)
             //pega as notas o usuario logado
@@ -107,7 +104,7 @@ const removeNota = () => {
             //remove a nota do array
             for (let i = notas.length - 1; i >= 0; i--) {
                 const nota = notas[i];
-                if (nota.descricao === descricao && nota.detalhamento === detalhamento) {
+                if (id === nota.id) {
                     notas.splice(i, 1);
                 }
             }
@@ -138,6 +135,8 @@ const editaNota = () => {
             const descricao = e.target.parentNode.parentNode.firstChild.nextSibling.textContent;
             //pega o detalhamento da nota
             const detalhamento = e.target.parentNode.parentNode.firstChild.nextSibling.nextSibling.textContent;
+            //pega o id da nota
+            const id = e.target.parentNode.parentNode.firstChild.textContent;
             //remove a nota da página
             e
                 .target
@@ -152,7 +151,7 @@ const editaNota = () => {
                 .descricao
                 .focus();
             //fazer a edição da nota no localStorage
-            const editaNotaNoLocalStorage = (descricao, detalhamento) => {
+            const editaNotaNoLocalStorage = (id) => {
                 //pega os usuarios do localStorage
                 const usuarios = JSON.parse(localStorage.usuarios)
                 //pega as notas o usuario logado
@@ -164,7 +163,7 @@ const editaNota = () => {
                 });
                 //remove a nota do array
                 notas.forEach((nota, index) => {
-                    if (nota.descricao === descricao && nota.detalhamento === detalhamento) {
+                    if (nota.id === id) {
                         notas.splice(index, 1);
                     }
                 })
@@ -172,7 +171,7 @@ const editaNota = () => {
                 localStorage.setItem("usuarios", JSON.stringify(usuarios));
             }
             //chama a função para editar a nota no localStorage
-            editaNotaNoLocalStorage(descricao, detalhamento);
+            editaNotaNoLocalStorage(id);
         })
     })
 }
@@ -241,6 +240,17 @@ const carregaNotas = () => {
         }
     })
 }
+
+//função para numerar as linhas da tabela
+const numerarLinhas = () => {
+    //pega todos os tr da tabela
+    const trs = document.querySelectorAll("tbody tr");
+    //adiciona o número da linha em cada tr
+    trs.forEach((tr, index) => {
+        tr.firstChild.textContent = index + 1;
+    })
+}
+
 //chama a função para carregar notas do localStorage
 carregaNotas();
 
@@ -260,11 +270,12 @@ removeNota();
 //chama a função para editar nota da página e do localStorage
 editaNota();
 
+//chama a função para numerar as linhas da tabela
+numerarLinhas();
+
 //listener para saida da página
 window.addEventListener("beforeunload", () => {
     localStorage.removeItem("usuarioLogado");
 })
 
-//* todo: mais de um usuário
-//* todo: id unico para cada nota
-//* todo: obrigar a passar pela tela de login
+
