@@ -104,7 +104,7 @@ const removeNota = () => {
             //remove a nota do array
             for (let i = notas.length - 1; i >= 0; i--) {
                 const nota = notas[i];
-                if (id === nota.id) {
+                if (nota.descricao === descricao && nota.detalhamento === detalhamento) {
                     notas.splice(i, 1);
                 }
             }
